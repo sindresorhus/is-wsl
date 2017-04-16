@@ -13,7 +13,7 @@ const isWsl = () => {
 	}
 };
 
-if (process.env.__AWFUL_WAY_TO_TEST_THIS_BUT_WHATEVER__) {
+if (process.env.__IS_WSL_TEST__) {
 	module.exports = isWsl;
 } else {
 	module.exports = isWsl();

@@ -33,10 +33,8 @@
   ],
   "devDependencies": {
     "ava": "*",
+    "clear-require": "^2.0.0",
     "proxyquire": "^1.7.11",
     "xo": "*"
-  },
-  "ava": {
-    "require": "./pre-test"
   }
 }

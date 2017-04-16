@@ -1,8 +1,14 @@
-import path from 'path';
 import test from 'ava';
 import proxyquire from 'proxyquire';
+import clearRequire from 'clear-require';
+
+test.beforeEach(() => {
+	clearRequire('.');
+});
 
 test('inside WSL', t => {
+	process.env.__IS_WSL_TEST__ = true;
+
 	const origPlatform = process.platform;
 	Object.defineProperty(process, 'platform', {value: 'linux'});
 
@@ -14,13 +20,10 @@ test('inside WSL', t => {
 
 	t.true(isWsl());
 
-	delete process.env.__AWFUL_WAY_TO_TEST_THIS_BUT_WHATEVER__;
+	delete process.env.__IS_WSL_TEST__;
 	Object.defineProperty(process, 'platform', {value: origPlatform});
 });
 
 test('not inside WSL', t => {
-	delete require.cache[path.join(__dirname, 'index.js')];
-	const isWsl = require('.');
-
-	t.false(isWsl);
+	t.false(require('.'));
 });

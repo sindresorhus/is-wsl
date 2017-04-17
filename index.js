@@ -1,9 +1,14 @@
 'use strict';
+const os = require('os');
 const fs = require('fs');
 
 const isWsl = () => {
 	if (process.platform !== 'linux') {
 		return false;
+	}
+
+	if (os.release().includes('Microsoft')) {
+		return true;
 	}
 
 	try {

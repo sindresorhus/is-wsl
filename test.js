@@ -1,9 +1,9 @@
 import test from 'ava';
 import proxyquire from 'proxyquire';
-import clearRequire from 'clear-require';
+import clearModule from 'clear-module';
 
 test.beforeEach(() => {
-	clearRequire('.');
+	clearModule('.');
 });
 
 test('inside WSL', t => {

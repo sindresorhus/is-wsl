@@ -13,7 +13,7 @@ const isWsl = () => {
 
 	try {
 		return fs.readFileSync('/proc/version', 'utf8').includes('Microsoft');
-	} catch (err) {
+	} catch (_) {
 		return false;
 	}
 };

@@ -8,7 +8,7 @@ Can be useful if you need to work around unimplemented or buggy features in WSL.
 ## Install
 
 ```
-$ npm install --save is-wsl
+$ npm install is-wsl
 ```
 
 

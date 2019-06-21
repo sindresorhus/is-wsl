@@ -13,11 +13,13 @@ const isWsl = () => {
 		return true;
 	}
 
-	if (fs.readFileSync('/proc/version', 'utf8').match(MS_RE) !== null) {
-		return true;
+	try {
+		if (fs.readFileSync('/proc/version', 'utf8').match(MS_RE) !== null) {
+			return true;
+		}
+	} catch (_) {
+		return false;
 	}
-
-	return false;
 };
 
 module.exports = isWsl;

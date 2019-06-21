@@ -7,7 +7,9 @@ test.beforeEach(() => {
 });
 
 test('inside WSL 1', t => {
-	const origPlatform = process.platform;
+	process.env.__IS_WSL_TEST__ = true;
+
+	const originalPlatform = process.platform;
 	Object.defineProperty(process, 'platform', {value: 'linux'});
 
 	const isWsl = proxyquire('.', {
@@ -18,11 +20,14 @@ test('inside WSL 1', t => {
 
 	t.true(isWsl());
 
-	Object.defineProperty(process, 'platform', {value: origPlatform});
+	delete process.env.__IS_WSL_TEST__;
+	Object.defineProperty(process, 'platform', {value: originalPlatform});
 });
 
 test('inside WSL 2', t => {
-	const origPlatform = process.platform;
+	process.env.__IS_WSL_TEST__ = true;
+
+	const originalPlatform = process.platform;
 	Object.defineProperty(process, 'platform', {value: 'linux'});
 
 	const isWsl = proxyquire('.', {
@@ -33,15 +38,19 @@ test('inside WSL 2', t => {
 
 	t.true(isWsl());
 
-	Object.defineProperty(process, 'platform', {value: origPlatform});
+	delete process.env.__IS_WSL_TEST__;
+	Object.defineProperty(process, 'platform', {value: originalPlatform});
 });
 
 test('not inside WSL', t => {
-	const origPlatform = process.platform;
+	process.env.__IS_WSL_TEST__ = true;
+
+	const originalPlatform = process.platform;
 	Object.defineProperty(process, 'platform', {value: 'darwin'});
 
 	const isWsl = require('.');
 	t.false(isWsl());
 
-	Object.defineProperty(process, 'platform', {value: origPlatform});
+	delete process.env.__IS_WSL_TEST__;
+	Object.defineProperty(process, 'platform', {value: originalPlatform});
 });

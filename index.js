@@ -2,24 +2,22 @@
 const os = require('os');
 const fs = require('fs');
 
+const MS_RE = /microsoft/i;
+
 const isWsl = () => {
 	if (process.platform !== 'linux') {
 		return false;
 	}
 
-	if (os.release().includes('Microsoft')) {
+	if (os.release().match(MS_RE) !== null) {
 		return true;
 	}
 
-	try {
-		return fs.readFileSync('/proc/version', 'utf8').includes('Microsoft');
-	} catch (_) {
-		return false;
+	if (fs.readFileSync('/proc/version', 'utf8').match(MS_RE) !== null) {
+		return true;
 	}
+
+	return false;
 };
 
-if (process.env.__IS_WSL_TEST__) {
-	module.exports = isWsl;
-} else {
-	module.exports = isWsl();
-}
+module.exports = isWsl;

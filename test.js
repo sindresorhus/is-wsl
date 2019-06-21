@@ -6,9 +6,7 @@ test.beforeEach(() => {
 	clearModule('.');
 });
 
-test('inside WSL', t => {
-	process.env.__IS_WSL_TEST__ = true;
-
+test('inside WSL 1', t => {
 	const origPlatform = process.platform;
 	Object.defineProperty(process, 'platform', {value: 'linux'});
 
@@ -20,10 +18,30 @@ test('inside WSL', t => {
 
 	t.true(isWsl());
 
-	delete process.env.__IS_WSL_TEST__;
+	Object.defineProperty(process, 'platform', {value: origPlatform});
+});
+
+test('inside WSL 2', t => {
+	const origPlatform = process.platform;
+	Object.defineProperty(process, 'platform', {value: 'linux'});
+
+	const isWsl = proxyquire('.', {
+		fs: {
+			readFileSync: () => 'Linux version 4.19.43-microsoft-standard (oe-user@oe-host) (gcc version 7.3.0 (GCC)) #1 SMP Mon May 20 19:35:22 UTC 2019'
+		}
+	});
+
+	t.true(isWsl());
+
 	Object.defineProperty(process, 'platform', {value: origPlatform});
 });
 
 test('not inside WSL', t => {
-	t.false(require('.'));
+	const origPlatform = process.platform;
+	Object.defineProperty(process, 'platform', {value: 'darwin'});
+
+	const isWsl = require('.');
+	t.false(isWsl());
+
+	Object.defineProperty(process, 'platform', {value: origPlatform});
 });

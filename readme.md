@@ -2,7 +2,7 @@
 
 > Check if the process is running inside [Windows Subsystem for Linux](https://msdn.microsoft.com/commandline/wsl/about) (Bash on Windows)
 
-Can be useful if you need to work around unimplemented or buggy features in WSL.
+Can be useful if you need to work around unimplemented or buggy features in WSL. Supports both WSL 1 and WSL 2.
 
 
 ## Install

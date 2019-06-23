@@ -7,12 +7,14 @@ const isWsl = () => {
 		return false;
 	}
 
-	if (os.release().includes('Microsoft')) {
+	if (os.release().toLowerCase().includes('microsoft')) {
 		return true;
 	}
 
 	try {
-		return fs.readFileSync('/proc/version', 'utf8').includes('Microsoft');
+		if (fs.readFileSync('/proc/version', 'utf8').toLowerCase().includes('microsoft')) {
+			return true;
+		}
 	} catch (_) {
 		return false;
 	}

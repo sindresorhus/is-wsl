@@ -7,12 +7,12 @@ const isWsl = () => {
 		return false;
 	}
 
-	if (os.release().toLocaleLowerCase().includes('microsoft')) {
+	if (os.release().toLowerCase().includes('microsoft')) {
 		return true;
 	}
 
 	try {
-		if (fs.readFileSync('/proc/version', 'utf8').toLocaleLowerCase().includes('microsoft')) {
+		if (fs.readFileSync('/proc/version', 'utf8').toLowerCase().includes('microsoft')) {
 			return true;
 		}
 	} catch (_) {

@@ -55,7 +55,7 @@ test('not inside WSL', t => {
 	Object.defineProperty(process, 'platform', {value: originalPlatform});
 });
 
-test('not inside WSL(inside linux)', t => {
+test('not inside WSL, but inside Linux', t => {
 	process.env.__IS_WSL_TEST__ = true;
 
 	const originalPlatform = process.platform;

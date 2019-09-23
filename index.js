@@ -12,9 +12,7 @@ const isWsl = () => {
 	}
 
 	try {
-		if (fs.readFileSync('/proc/version', 'utf8').toLowerCase().includes('microsoft')) {
-			return true;
-		}
+		return fs.readFileSync('/proc/version', 'utf8').toLowerCase().includes('microsoft');
 	} catch (_) {
 		return false;
 	}

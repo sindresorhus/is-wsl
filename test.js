@@ -64,6 +64,9 @@ test('not inside WSL, but inside Linux', t => {
 	const isWsl = proxyquire('.', {
 		fs: {
 			readFileSync: () => 'Linux version 4.19.43-standard (oe-user@oe-host) (gcc version 7.3.0 (GCC)) #1 SMP Mon May 20 19:35:22 UTC 2019'
+		},
+		os: {
+			release: () => ''
 		}
 	});
 

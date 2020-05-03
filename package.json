@@ -32,6 +32,9 @@
 		"terminal",
 		"is"
 	],
+	"dependencies": {
+		"is-docker": "^2.0.0"
+	},
 	"devDependencies": {
 		"ava": "^1.4.1",
 		"clear-module": "^3.2.0",

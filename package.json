@@ -1,6 +1,6 @@
 {
 	"name": "is-wsl",
-	"version": "2.1.1",
+	"version": "2.2.0",
 	"description": "Check if the process is running inside Windows Subsystem for Linux (Bash on Windows)",
 	"license": "MIT",
 	"repository": "sindresorhus/is-wsl",

@@ -4,10 +4,11 @@
 	"description": "Check if the process is running inside Windows Subsystem for Linux (Bash on Windows)",
 	"license": "MIT",
 	"repository": "sindresorhus/is-wsl",
+	"funding": "https://github.com/sponsors/sindresorhus",
 	"author": {
 		"name": "Sindre Sorhus",
 		"email": "sindresorhus@gmail.com",
-		"url": "sindresorhus.com"
+		"url": "https://sindresorhus.com"
 	},
 	"engines": {
 		"node": ">=8"

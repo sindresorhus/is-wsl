@@ -1,4 +1,4 @@
 import {expectType} from 'tsd';
-import isWsl = require('.');
+import isWsl from './index.js';
 
 expectType<boolean>(isWsl);

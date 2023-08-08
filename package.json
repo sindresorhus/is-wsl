@@ -10,8 +10,13 @@
 		"email": "sindresorhus@gmail.com",
 		"url": "https://sindresorhus.com"
 	},
+	"type": "module",
+	"exports": {
+		"types": "./index.d.ts",
+		"default": "./index.js"
+	},
 	"engines": {
-		"node": ">=8"
+		"node": ">=16"
 	},
 	"scripts": {
 		"test": "xo && ava && tsd"
@@ -34,13 +39,19 @@
 		"is"
 	],
 	"dependencies": {
-		"is-docker": "^2.0.0"
+		"is-docker": "^3.0.0"
 	},
 	"devDependencies": {
-		"ava": "^1.4.1",
-		"clear-module": "^3.2.0",
-		"proxyquire": "^2.1.0",
-		"tsd": "^0.7.2",
-		"xo": "^0.24.0"
+		"ava": "^5.3.1",
+		"esmock": "^2.3.6",
+		"tsd": "^0.28.1",
+		"xo": "^0.55.1"
+	},
+	"ava": {
+		"serial": true,
+		"nodeArguments": [
+			"--loader=esmock",
+			"--no-warnings"
+		]
 	}
 }

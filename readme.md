@@ -6,28 +6,16 @@ Can be useful if you need to work around unimplemented or buggy features in WSL.
 
 ## Install
 
-```
-$ npm install is-wsl
+```sh
+npm install is-wsl
 ```
 
 ## Usage
 
 ```js
-const isWsl = require('is-wsl');
+import isWsl from 'is-wsl';
 
 // When running inside Windows Subsystem for Linux
 console.log(isWsl);
 //=> true
 ```
-
----
-
-<div align="center">
-	<b>
-		<a href="https://tidelift.com/subscription/pkg/npm-is-wsl?utm_source=npm-is-wsl&utm_medium=referral&utm_campaign=readme">Get professional support for this package with a Tidelift subscription</a>
-	</b>
-	<br>
-	<sub>
-		Tidelift helps make open source sustainable for maintainers while giving companies<br>assurances about security, maintenance, and licensing for their dependencies.
-	</sub>
-</div>

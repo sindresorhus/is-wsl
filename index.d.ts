@@ -3,7 +3,7 @@ Check if the process is running inside [Windows Subsystem for Linux](https://msd
 
 @example
 ```
-import isWsl = require('is-wsl');
+import isWsl from 'is-wsl';
 
 // When running inside Windows Subsystem for Linux
 console.log(isWsl);
@@ -12,4 +12,4 @@ console.log(isWsl);
 */
 declare const isWsl: boolean;
 
-export = isWsl;
+export default isWsl;

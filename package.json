@@ -39,7 +39,7 @@
 		"is"
 	],
 	"dependencies": {
-		"is-docker": "^3.0.0"
+		"is-inside-container": "^1.0.0"
 	},
 	"devDependencies": {
 		"ava": "^5.3.1",

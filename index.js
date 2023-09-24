@@ -1,7 +1,7 @@
 import process from 'node:process';
 import os from 'node:os';
 import fs from 'node:fs';
-import isDocker from 'is-docker';
+import isInsideContainer from 'is-inside-container';
 
 const isWsl = () => {
 	if (process.platform !== 'linux') {
@@ -9,7 +9,7 @@ const isWsl = () => {
 	}
 
 	if (os.release().toLowerCase().includes('microsoft')) {
-		if (isDocker()) {
+		if (isInsideContainer()) {
 			return false;
 		}
 
@@ -18,7 +18,7 @@ const isWsl = () => {
 
 	try {
 		return fs.readFileSync('/proc/version', 'utf8').toLowerCase().includes('microsoft')
-			? !isDocker() : false;
+			? !isInsideContainer() : false;
 	} catch {
 		return false;
 	}

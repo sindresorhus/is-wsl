@@ -75,7 +75,7 @@ test('not inside WSL, but inside Linux', async t => {
 	Object.defineProperty(process, 'platform', {value: originalPlatform});
 });
 
-test('inside WSL, but inside docker', async t => {
+test('inside WSL, but inside container', async t => {
 	process.env.__IS_WSL_TEST__ = true;
 
 	const originalPlatform = process.platform;
@@ -85,7 +85,7 @@ test('inside WSL, but inside docker', async t => {
 		fs: {
 			readFileSync: () => 'Linux version 4.19.43-microsoft-standard (oe-user@oe-host) (gcc version 7.3.0 (GCC)) #1 SMP Mon May 20 19:35:22 UTC 2019',
 		},
-		'is-docker': () => true,
+		'is-inside-container': () => true,
 		os: {
 			release: () => 'microsoft',
 		},

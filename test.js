@@ -75,6 +75,50 @@ test('not inside WSL, but inside Linux', async t => {
 	Object.defineProperty(process, 'platform', {value: originalPlatform});
 });
 
+test('inside WSL 2 with custom kernel', async t => {
+	process.env.__IS_WSL_TEST__ = true;
+
+	const originalPlatform = process.platform;
+	Object.defineProperty(process, 'platform', {value: 'linux'});
+
+	const isWsl = await esmock('./index.js', {
+		fs: {
+			readFileSync: () => 'Linux version 6.1.0-custom (user@host) (gcc version 12.2.0) #1 SMP PREEMPT_DYNAMIC Mon Jan 1 00:00:00 UTC 2024',
+			existsSync: path => path === '/proc/sys/fs/binfmt_misc/WSLInterop',
+		},
+		os: {
+			release: () => '6.1.0-custom',
+		},
+	});
+
+	t.true(isWsl());
+
+	delete process.env.__IS_WSL_TEST__;
+	Object.defineProperty(process, 'platform', {value: originalPlatform});
+});
+
+test('inside WSL 2 with custom kernel detected via /run/WSL', async t => {
+	process.env.__IS_WSL_TEST__ = true;
+
+	const originalPlatform = process.platform;
+	Object.defineProperty(process, 'platform', {value: 'linux'});
+
+	const isWsl = await esmock('./index.js', {
+		fs: {
+			readFileSync: () => 'Linux version 6.1.0-custom (user@host) (gcc version 12.2.0) #1 SMP PREEMPT_DYNAMIC Mon Jan 1 00:00:00 UTC 2024',
+			existsSync: path => path === '/run/WSL',
+		},
+		os: {
+			release: () => '6.1.0-custom',
+		},
+	});
+
+	t.true(isWsl());
+
+	delete process.env.__IS_WSL_TEST__;
+	Object.defineProperty(process, 'platform', {value: originalPlatform});
+});
+
 test('inside WSL, but inside container', async t => {
 	process.env.__IS_WSL_TEST__ = true;
 

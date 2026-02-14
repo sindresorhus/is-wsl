@@ -17,11 +17,20 @@ const isWsl = () => {
 	}
 
 	try {
-		return fs.readFileSync('/proc/version', 'utf8').toLowerCase().includes('microsoft')
-			? !isInsideContainer() : false;
-	} catch {
-		return false;
+		if (fs.readFileSync('/proc/version', 'utf8').toLowerCase().includes('microsoft')) {
+			return !isInsideContainer();
+		}
+	} catch {}
+
+	// Fallback for custom kernels: check WSL-specific paths.
+	if (
+		fs.existsSync('/proc/sys/fs/binfmt_misc/WSLInterop')
+		|| fs.existsSync('/run/WSL')
+	) {
+		return !isInsideContainer();
 	}
+
+	return false;
 };
 
 export default process.env.__IS_WSL_TEST__ ? isWsl : isWsl();
